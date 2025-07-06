@@ -890,6 +890,32 @@
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
+
+        #aiComment {
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            min-height: 30px; /* コメント表示エリアの最小高さを確保 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #78b9f7;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
@@ -935,7 +961,6 @@
                     <p>Webクリエイター兼デザイナーのゼロウィングと申します。デザインからコーディングまで一貫してWebサイト制作を手掛ける傍ら、
                     可愛らしいキャラクターイラストの制作や、最新のAI技術を用いたビデオアートの制作にも日々取り組んでいます。</p>
                     <p>ユーザーの心に響くデザインと、確かな技術で、お客様の想いを形にすることを使命としています。</p>
-                    <!-- スキルセクションを削除 -->
                 </div>
             </div>
         </div>
@@ -1007,7 +1032,9 @@
                 <p id="playerChoice" class="game-message">あなたの手: -</p>
                 <p id="computerChoice" class="game-message">コンピュータの手: -</p>
                 <p id="gameResult" class="game-message">✊ ✌️ ✋ どれを出す？</p>
-                <button id="resetJanken" class="game-btn game-btn-secondary" style="display: none;">もう一度プレイ</button>
+                <button id="getAiCommentBtn" class="game-btn game-btn-secondary" style="display: none;">AIのコメントを聞く✨</button>
+                <div id="aiComment"></div>
+                <button id="resetJanken" class="game-btn game-btn-secondary" style="margin-top: 1rem; display: none;">もう一度プレイ</button>
             </div>
         </div>
     </section>
@@ -1134,12 +1161,18 @@
             const computerChoiceDisplay = document.getElementById('computerChoice');
             const gameResultDisplay = document.getElementById('gameResult');
             const resetJankenBtn = document.getElementById('resetJanken');
+            const getAiCommentBtn = document.getElementById('getAiCommentBtn');
+            const aiCommentDisplay = document.getElementById('aiComment');
 
             // ゲーム要素が存在するか確認
-            if (!(playerChoiceDisplay && computerChoiceDisplay && gameResultDisplay && resetJankenBtn)) {
+            if (!(playerChoiceDisplay && computerChoiceDisplay && gameResultDisplay && resetJankenBtn && getAiCommentBtn && aiCommentDisplay)) {
                 console.error("じゃんけんゲームの要素が見つかりませんでした。ゲームを初期化できません。");
                 return; // これ以上ゲームロジックを実行しない
             }
+
+            let lastPlayerChoice = '';
+            let lastComputerChoice = '';
+            let lastGameResult = '';
 
             // じゃんけんの手の定義
             const choices = {
@@ -1160,22 +1193,65 @@
                 const computerChoices = ['rock', 'scissors', 'paper'];
                 const computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
-                playerChoiceDisplay.textContent = `あなたの手: ${choices[playerChoice]}`;
-                computerChoiceDisplay.textContent = `コンピュータの手: ${choices[computerChoice]}`;
+                lastPlayerChoice = choices[playerChoice];
+                lastComputerChoice = choices[computerChoice];
+                lastGameResult = rules[playerChoice][computerChoice];
 
-                const result = rules[playerChoice][computerChoice];
-                gameResultDisplay.textContent = `結果: ${result}`;
+                playerChoiceDisplay.textContent = `あなたの手: ${lastPlayerChoice}`;
+                computerChoiceDisplay.textContent = `コンピュータの手: ${lastComputerChoice}`;
+                gameResultDisplay.textContent = `結果: ${lastGameResult}`;
 
-                if (result === '勝ち！') {
+                if (lastGameResult === '勝ち！') {
                     gameResultDisplay.style.color = '#4CAF50'; // 緑色
-                } else if (result === '負け') {
+                } else if (lastGameResult === '負け') {
                     gameResultDisplay.style.color = '#f44336'; // 赤色
                 } else {
                     gameResultDisplay.style.color = '#ffdd33'; // 黄色
                 }
 
                 jankenChoices.forEach(btn => btn.disabled = true);
+                getAiCommentBtn.style.display = 'inline-block'; // AIコメントボタンを表示
                 resetJankenBtn.style.display = 'inline-block';
+                aiCommentDisplay.textContent = ''; // 前回のAIコメントをクリア
+            }
+
+            // AIコメント生成関数
+            async function getAiComment() {
+                aiCommentDisplay.innerHTML = '<div class="loading-spinner"></div>'; // ローディングスピナーを表示
+                getAiCommentBtn.disabled = true; // ボタンを無効化
+
+                const prompt = `あなたはじゃんけんゲームのコンピュータです。プレイヤーは${lastPlayerChoice}を出し、あなたは${lastComputerChoice}を出しました。結果は${lastGameResult}でした。この結果について、あなたの個性的なコメントを1文で述べてください。`;
+
+                try {
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // Canvasが自動的にAPIキーを提供します
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        aiCommentDisplay.textContent = text;
+                    } else {
+                        aiCommentDisplay.textContent = 'AIコメントの生成に失敗しました。';
+                        console.error('Unexpected API response structure:', result);
+                    }
+                } catch (error) {
+                    aiCommentDisplay.textContent = 'AIコメントの取得中にエラーが発生しました。';
+                    console.error('Error fetching AI comment:', error);
+                } finally {
+                    getAiCommentBtn.disabled = false; // ボタンを再度有効化
+                }
             }
 
             // リセット関数
@@ -1184,8 +1260,10 @@
                 computerChoiceDisplay.textContent = 'コンピュータの手: -';
                 gameResultDisplay.textContent = '✊ ✌️ ✋ どれを出す？';
                 gameResultDisplay.style.color = '#78b9f7'; // デフォルト色に戻す
+                aiCommentDisplay.textContent = ''; // AIコメントをクリア
 
                 jankenChoices.forEach(btn => btn.disabled = false);
+                getAiCommentBtn.style.display = 'none'; // AIコメントボタンを非表示
                 resetJankenBtn.style.display = 'none';
             }
 
@@ -1198,6 +1276,9 @@
                     });
                 }
             });
+
+            // AIコメントボタンにイベントリスナーを追加
+            getAiCommentBtn.addEventListener('click', getAiComment);
 
             // リセットボタンにイベントリスナーを追加
             resetJankenBtn.addEventListener('click', resetGame);
