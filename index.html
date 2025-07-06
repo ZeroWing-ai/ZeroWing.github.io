@@ -21,39 +21,34 @@
         body {
             font-family: 'Inter', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             line-height: 1.6;
-            color: #333;
-            /* 全体の背景画像を設定 */
-            background-image: url('background-image.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-color: #1a1a1a; /* 画像が読み込まれない場合のフォールバック色 */
+            color: #e0e0e0; /* 全体のテキスト色を明るく */
+            background-color: #1a1a1a; /* 全体の背景色を暗く */
             overflow-x: hidden;
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 960px; /* ikedahayato.com のようにコンテンツ幅を少し狭く */
             margin: 0 auto;
             padding: 0 15px;
         }
 
         /* Header */
         header {
-            background-color: rgba(0, 0, 0, 0.85); /* より濃い半透明の背景 */
+            background-color: rgba(0, 0, 0, 0.85); /* 暗い半透明の背景 */
             backdrop-filter: blur(8px); /* 背景をぼかす効果を追加 */
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* 強い影 */
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease, border-bottom 0.3s ease;
-            border-bottom: 1px solid transparent; /* 初期状態は透明なボーダー */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
+            border-bottom: none; /* ボーダーを削除 */
         }
 
         header.scrolled {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* スクロール時にボーダーを表示 */
+            background-color: rgba(0, 0, 0, 0.95); /* スクロール時にさらに濃く */
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* 影を強調 */
         }
 
         header .container {
@@ -64,11 +59,11 @@
         }
 
         header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem; /* サイズを調整 */
-            font-weight: 800;
-            color: #fff;
-            letter-spacing: 1.5px; /* 字間を調整 */
+            font-family: 'Inter', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #fff; /* 白い文字色 */
+            letter-spacing: 0.5px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* テキストシャドウを追加 */
         }
 
@@ -78,33 +73,33 @@
         }
 
         header nav ul li {
-            margin-left: 3rem; /* rem単位で間隔を調整 */
+            margin-left: 2.5rem;
         }
 
         header nav ul li a {
             text-decoration: none;
-            color: #e0e0e0; /* オフホワイトのリンク色 */
-            font-weight: 600;
-            transition: color 0.3s ease, transform 0.2s ease;
+            color: #e0e0e0; /* 明るいリンク色 */
+            font-weight: 500;
+            transition: color 0.2s ease, transform 0.1s ease;
             position: relative;
-            padding-bottom: 8px; /* アンダーラインとの間隔 */
-            font-size: 1.1rem; /* フォントサイズを調整 */
+            padding-bottom: 4px;
+            font-size: 1rem;
         }
 
         header nav ul li a:hover {
-            color: #78b9f7; /* ホバー時のアクセントカラーを明るく */
-            transform: translateY(-4px); /* もっと浮き上がる */
+            color: #78b9f7; /* 青いアクセントカラー */
+            transform: translateY(-2px); /* 軽い浮き上がり */
         }
 
         header nav ul li a::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 4px; /* 太く */
-            background-color: #78b9f7; /* ホバー時のアクセントカラーに合わせる */
+            height: 2px;
+            background-color: #78b9f7; /* 青いアクセントカラー */
             bottom: 0;
             left: 0;
-            transition: width 0.3s ease-out;
+            transition: width 0.2s ease-out;
         }
 
         header nav ul li a:hover::after {
@@ -116,8 +111,8 @@
             display: none;
             flex-direction: column;
             justify-content: space-between;
-            width: 30px;
-            height: 20px;
+            width: 25px;
+            height: 18px;
             cursor: pointer;
             position: relative;
             z-index: 1001;
@@ -127,8 +122,8 @@
             display: block;
             width: 100%;
             height: 2px;
-            background-color: #fff;
-            border-radius: 2px;
+            background-color: #fff; /* 白いトグルアイコン */
+            border-radius: 1px;
             transition: all 0.3s ease;
         }
 
@@ -154,10 +149,10 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            color: #fff;
+            color: #fff; /* テキスト色を白に */
             padding-top: 80px;
             z-index: 1;
-            background-image: none;
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2a3a 100%); /* 暗いグラデーション背景 */
         }
 
         #hero .hero-content {
@@ -168,9 +163,9 @@
             align-items: center;
             justify-content: center;
             padding: 3rem 2rem; /* パディングを調整 */
-            background: rgba(0, 0, 0, 0.7); /* より濃い半透明のオーバーレイ */
+            background: rgba(0, 0, 0, 0.7); /* 暗い半透明の背景 */
             border-radius: 20px; /* 角丸を大きく */
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* 影を強く */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* 強い影 */
             border: 1px solid rgba(255, 255, 255, 0.1); /* 軽いボーダーを追加 */
             animation: fadeInScaleUp 1.2s ease-out forwards; /* 新しい登場アニメーション */
         }
@@ -181,13 +176,13 @@
         }
 
         .profile-icon-large {
-            width: 180px; /* サイズを大きく */
-            height: 180px; /* サイズを大きく */
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
-            border: 6px solid #78b9f7; /* アクセントカラーのボーダーを太く */
+            border: 6px solid #78b9f7; /* 青いアクセントカラー */
             box-shadow: 0 0 30px rgba(120, 185, 247, 0.8), 0 0 50px rgba(120, 185, 247, 0.4); /* 光る影を強調 */
-            margin-bottom: 2.5rem; /* 間隔を調整 */
+            margin-bottom: 2.5rem;
             animation: pulse 2s infinite alternate, fadeInScale 1s ease forwards; /* 脈打つアニメーションとフェードインスケール */
             animation-delay: 0.2s;
         }
@@ -202,54 +197,54 @@
         }
 
         #hero h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 4.5rem; /* サイズを調整 */
-            margin-bottom: 1.5rem;
-            color: #fff;
-            line-height: 1.1;
+            font-family: 'Inter', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: #fff; /* 白い文字色 */
+            line-height: 1.2;
             text-shadow: 3px 3px 8px rgba(0,0,0,0.8); /* 影をさらに強く */
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInMoveUp 1s ease forwards;
-            animation-delay: 0.8s;
+            transform: translateY(20px);
+            animation: fadeInMoveUp 0.8s ease forwards;
+            animation-delay: 0.5s;
         }
 
         #hero p {
-            font-size: 1.8rem; /* サイズを調整 */
-            color: #e0e0e0;
+            font-size: 1.4rem;
+            color: #e0e0e0; /* 明るいグレーの文字色 */
             opacity: 0;
-            transform: translateY(30px);
-            animation: fadeInMoveUp 1s ease forwards;
-            animation-delay: 1.1s;
+            transform: translateY(20px);
+            animation: fadeInMoveUp 0.8s ease forwards;
+            animation-delay: 0.7s;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* 影を強く */
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
         }
 
         .hero-buttons {
             display: flex;
-            gap: 1.5rem; /* 間隔を調整 */
+            gap: 1rem;
             margin-top: 1.5rem;
             opacity: 0;
-            animation: fadeInMoveUp 1s ease forwards;
-            animation-delay: 1.4s;
+            animation: fadeInMoveUp 0.8s ease forwards;
+            animation-delay: 0.9s;
         }
 
         .hero-btn {
             background: linear-gradient(45deg, #4a90e2, #78b9f7); /* グラデーション背景 */
             color: white;
-            padding: 1rem 2.5rem; /* パディングを調整 */
+            padding: 0.8rem 2rem;
             border: none;
-            border-radius: 50px;
-            font-size: 1.15rem; /* フォントサイズを調整 */
-            font-weight: 700; /* より太く */
+            border-radius: 50px; /* 丸いボタン */
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease; /* すべてのプロパティにトランジション */
-            text-decoration: none; /* リンクとして */
+            transition: all 0.3s ease;
+            text-decoration: none;
             display: inline-block;
             box-shadow: 0 8px 20px rgba(74, 144, 226, 0.5); /* 影を強調 */
             position: relative;
-            overflow: hidden; /* ホバーエフェクト用 */
-            z-index: 1; /* 光沢エフェクトを前面に */
+            overflow: hidden;
+            z-index: 1;
         }
 
         .hero-btn::before {
@@ -270,24 +265,25 @@
         }
 
         .hero-btn:hover {
-            transform: translateY(-8px); /* もっと浮き上がる */
+            transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(74, 144, 226, 0.8);
             background: linear-gradient(45deg, #357abd, #65a8e0); /* ホバー時のグラデーション */
         }
 
         /* Section Common Style */
         .section {
-            padding: 7rem 0; /* 十分な余白 */
+            padding: 6rem 0;
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 1s ease-out, transform 1s ease-out; /* アニメーション時間を長く */
-            background-color: rgba(20, 20, 20, 0.9); /* 暗い半透明でより不透明に */
-            margin-top: 3.5rem; /* セクション間の間隔 */
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            background-color: #222222; /* 暗い背景色 */
+            margin-top: 3rem;
             border-radius: 20px; /* 角丸を大きく */
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* 影を強調 */
-            color: #fff;
-            position: relative; /* 背景の擬似要素用 */
-            backdrop-filter: blur(5px); /* セクションにもぼかし効果 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* 影を強調 */
+            color: #e0e0e0; /* テキスト色を明るく */
+            position: relative;
+            backdrop-filter: blur(5px); /* ぼかし効果 */
+            border-bottom: none; /* ボーダーを削除 */
         }
 
         /* Section Background Overlay */
@@ -310,116 +306,93 @@
         }
 
         .section h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: 'Inter', sans-serif;
             text-align: center;
-            font-size: 3.8rem; /* サイズを調整 */
-            margin-bottom: 5rem; /* 間隔を調整 */
+            font-size: 2.8rem;
+            margin-bottom: 4rem;
             position: relative;
-            color: #fff;
-            letter-spacing: 2px; /* 字間を強調 */
+            color: #fff; /* 白い文字色 */
+            letter-spacing: 1px;
             text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
         }
 
         .section h2::after {
             content: '';
             position: absolute;
-            width: 100px; /* 太く */
-            height: 6px; /* 太く */
-            background-color: #78b9f7; /* アクセントカラーに合わせる */
-            bottom: -30px; /* 位置を調整 */
+            width: 70px;
+            height: 4px;
+            background-color: #78b9f7; /* 青いアクセントカラー */
+            bottom: -20px;
             left: 50%;
             transform: translateX(-50%);
-            border-radius: 4px;
+            border-radius: 2px;
         }
 
         .bg-light {
-            background-color: rgba(30, 30, 30, 0.9); /* 異なる暗い半透明で交互に表示 */
+            background-color: #1a1a1a; /* わずかに異なる暗い背景色 */
         }
 
         /* 私についてセクション */
         .about-content {
             display: flex;
-            align-items: center;
-            gap: 5rem; /* 間隔を調整 */
+            align-items: flex-start;
+            gap: 4rem;
             flex-wrap: wrap;
             justify-content: center;
-            padding: 0 2rem; /* セクション内のパディング */
+            padding: 0 1rem;
         }
 
         .profile-image {
-            flex: 1;
-            min-width: 300px;
-            max-width: 400px;
+            flex: none;
+            width: 280px;
+            height: 280px;
+            margin-right: 2rem;
         }
 
         .profile-image img {
             width: 100%;
+            height: 100%;
             border-radius: 50%;
             object-fit: cover;
-            border: 6px solid #78b9f7; /* アクセントカラーのボーダー */
+            border: 6px solid #4a90e2; /* 青いアクセントカラー */
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* 影を強調 */
-            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* スムーズなアニメーション */
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .profile-image img:hover {
-            transform: scale(1.07) rotate(3deg); /* ホバーで大きく拡大して回転 */
+            transform: scale(1.07) rotate(3deg);
         }
 
         .profile-text {
-            flex: 2;
+            flex: 1;
             min-width: 300px;
-            max-width: 700px;
+            max-width: 600px;
         }
 
         .profile-text h3 {
-            font-size: 2.2rem; /* サイズを調整 */
-            margin: 0 0 1.5rem;
-            color: #fff;
-            font-weight: 700;
+            font-size: 1.8rem;
+            margin: 0 0 1rem;
+            color: #fff; /* 白い文字色 */
+            font-weight: 600;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
         .profile-text p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem; /* サイズを調整 */
-            line-height: 2; /* 行間を広げる */
-            color: #c0c0c0; /* 明るいグレーの文字 */
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #c0c0c0; /* 明るいグレーの文字色 */
         }
 
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem; /* 間隔を調整 */
-            margin-top: 2.5rem;
-            list-style: none;
-        }
-
-        .skills li {
-            background-color: rgba(120, 185, 247, 0.15); /* 透明度のあるアクセントカラー */
-            color: #78b9f7;
-            padding: 0.6rem 1.5rem; /* パディングを調整 */
-            border-radius: 25px; /* 角丸を調整 */
-            font-size: 0.95rem; /* サイズを調整 */
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            border: 1px solid rgba(120, 185, 247, 0.3); /* 軽いボーダー */
-        }
-
-        .skills li:hover {
-            background-color: #78b9f7;
-            color: #fff;
-            transform: translateY(-3px) scale(1.05); /* ホバーで浮き上がって少し拡大 */
-            box-shadow: 0 5px 15px rgba(120, 185, 247, 0.6);
-        }
+        /* Skills Section Removed */
 
         /* 作品セクション */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 最小幅を調整 */
-            gap: 3rem; /* 間隔を調整 */
-            margin-top: 3.5rem;
-            padding: 0 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+            padding: 0 1rem;
         }
 
         .work-item a {
@@ -432,9 +405,9 @@
 
         .work-item {
             background: rgba(255, 255, 255, 0.05); /* 薄い透明な背景 */
-            border-radius: 20px;
+            border-radius: 20px; /* 角を大きく */
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* 影を強調 */
             transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
             position: relative;
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -459,58 +432,58 @@
         }
 
         .work-item:hover {
-            transform: translateY(-15px) scale(1.02); /* ホバーで大きく浮き上がり、少し拡大 */
+            transform: translateY(-15px) scale(1.02);
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
         }
 
         .work-item img {
             width: 100%;
-            height: 280px; /* 高さ調整 */
+            height: 220px;
             object-fit: cover;
             transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .work-item:hover img {
-            transform: scale(1.1); /* ホバーで画像を拡大 */
+            transform: scale(1.1);
         }
 
         .work-item-content {
-            padding: 2rem; /* パディングを調整 */
+            padding: 1.5rem;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            color: #e0e0e0; /* テキスト色を調整 */
+            color: #e0e0e0; /* テキスト色を明るく */
         }
 
         .work-item h3 {
-            font-size: 1.6rem; /* サイズを調整 */
-            color: #fff;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            color: #fff; /* 白い文字色 */
+            margin-bottom: 0.8rem;
+            font-weight: 600;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
         .work-item p {
-            font-size: 1rem; /* サイズを調整 */
-            color: #c0c0c0;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            font-size: 0.9rem;
+            color: #c0c0c0; /* 明るいグレーの文字色 */
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
         .work-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.6rem; /* 間隔を調整 */
+            gap: 0.4rem;
             margin-top: auto;
         }
 
         .work-tags a, .work-tags span {
             background-color: rgba(120, 185, 247, 0.1); /* 透明度のあるアクセントカラー */
-            color: #78b9f7;
-            padding: 0.5rem 1rem; /* パディングを調整 */
-            border-radius: 15px; /* 角丸を調整 */
-            font-size: 0.85rem; /* サイズを調整 */
+            color: #78b9f7; /* 青いアクセントカラー */
+            padding: 0.3rem 0.7rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
             font-weight: 500;
             text-decoration: none;
             transition: all 0.3s ease;
@@ -526,7 +499,7 @@
 
         /* お問い合わせセクション */
         #contact {
-            padding: 7rem 0;
+            padding: 6rem 0;
             text-align: center;
         }
 
@@ -537,27 +510,27 @@
         #contact .contact-buttons {
             display: flex;
             justify-content: center;
-            gap: 2rem; /* 間隔を調整 */
-            margin-top: 2.5rem;
-            padding: 0 2rem;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding: 0 1rem;
         }
 
         .contact-btn {
-            background: linear-gradient(45deg, #2c3e50, #4a647a); /* 暗いグラデーションボタン */
+            background: linear-gradient(45deg, #4a90e2, #78b9f7); /* グラデーション背景 */
             color: white;
-            padding: 1rem 2.5rem;
+            padding: 0.8rem 2rem;
             border: none;
             border-radius: 50px;
-            font-size: 1.15rem;
-            font-weight: 700;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.5); /* 影を強調 */
             position: relative;
             overflow: hidden;
-            z-index: 1; /* 光沢エフェクトを前面に */
+            z-index: 1;
         }
 
         .contact-btn::before {
@@ -567,7 +540,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             transition: all 0.7s ease;
             transform: skewX(-20deg);
             z-index: -1;
@@ -578,43 +551,43 @@
         }
 
         .contact-btn:hover {
-            background: linear-gradient(45deg, #4a90e2, #78b9f7); /* ホバー時のアクセントカラーグラデーション */
-            transform: translateY(-8px);
+            background: linear-gradient(45deg, #357abd, #65a8e0); /* ホバー時のグラデーション */
+            transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(74, 144, 226, 0.6);
         }
 
         /* フッター */
         footer {
-            background-color: #1a1a1a; /* より暗い背景 */
+            background-color: #1a1a1a; /* 暗い背景色 */
             color: #fff;
-            padding: 3.5rem 0; /* パディングを調整 */
+            padding: 3rem 0;
             text-align: center;
-            margin-top: 3.5rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05); /* 上部に軽いボーダー */
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         footer p {
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            color: #a0a0a0; /* 暗い白の著作権表示 */
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            color: #a0a0a0;
         }
 
         .social-links {
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             display: flex;
             justify-content: center;
-            gap: 1.8rem; /* 間隔を調整 */
+            gap: 1.5rem;
         }
 
         .social-links a {
-            color: #e0e0e0; /* 白いアイコン */
-            font-size: 2.2rem; /* サイズを調整 */
-            transition: color 0.3s ease, transform 0.2s ease;
+            color: #e0e0e0;
+            font-size: 1.8rem;
+            transition: color 0.2s ease, transform 0.1s ease;
         }
 
         .social-links a:hover {
-            color: #78b9f7; /* ホバー時のアクセントカラー */
-            transform: translateY(-5px) scale(1.1); /* ホバーで大きく浮き上がって拡大 */
+            color: #78b9f7; /* 青いアクセントカラー */
+            transform: translateY(-2px);
         }
 
         /* レスポンシブデザイン */
@@ -626,8 +599,8 @@
             }
 
             header h1 {
-                margin-bottom: 0.8rem;
-                font-size: 1.8rem;
+                margin-bottom: 0.6rem;
+                font-size: 1.6rem;
             }
 
             header nav {
@@ -639,10 +612,10 @@
                 backdrop-filter: blur(8px);
                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
                 position: absolute;
-                top: 70px; /* ヘッダーの高さに合わせて調整 */
+                top: 60px;
                 left: 0;
-                padding: 1.5rem 0;
-                border-radius: 0 0 15px 15px;
+                padding: 1rem 0;
+                border-radius: 0 0 10px 10px;
             }
 
             header nav ul {
@@ -651,7 +624,7 @@
             }
 
             header nav ul li {
-                margin: 1rem 0;
+                margin: 0.8rem 0;
             }
 
             .nav-toggle {
@@ -659,39 +632,39 @@
             }
             
             #hero {
-                padding: 6rem 0 4rem;
+                padding: 5rem 0 3rem;
             }
 
             #hero .hero-content {
-                padding: 2rem 1.5rem;
+                padding: 2rem 1.5rem; /* モバイルでのパディングを調整 */
             }
 
             .profile-icon-large {
-                width: 140px;
-                height: 140px;
-                margin-bottom: 2rem;
+                width: 120px;
+                height: 120px;
+                margin-bottom: 1.5rem;
             }
 
             #hero h2 {
-                font-size: 2.8rem;
-                margin-bottom: 1rem;
+                font-size: 2.2rem;
+                margin-bottom: 0.8rem;
             }
 
             #hero p {
-                font-size: 1.3rem;
-                margin-bottom: 2rem;
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
             }
 
             .hero-buttons {
                 flex-direction: column;
-                gap: 1rem;
+                gap: 0.8rem;
             }
 
             .hero-btn {
-                width: 90%;
+                width: 80%;
                 margin: 0 auto;
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
             }
 
             .section {
@@ -700,85 +673,84 @@
             }
 
             .section h2 {
-                font-size: 2.5rem;
-                margin-bottom: 3rem;
+                font-size: 2rem;
+                margin-bottom: 2.5rem;
             }
             
             .about-content, .works-grid, #contact .contact-buttons {
-                padding: 0 1rem;
-                gap: 2.5rem;
+                padding: 0 0.8rem;
+                gap: 2rem;
             }
 
-            .profile-image, .profile-text {
+            .profile-image {
+                width: 200px;
+                height: 200px;
+                margin-right: 0;
+                margin-bottom: 1.5rem;
+            }
+
+            .profile-text {
                 min-width: unset;
                 width: 100%;
             }
 
-            .profile-image img {
-                max-width: 200px;
-                margin: 0 auto;
-            }
-
             .profile-text h3 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
 
             .profile-text p {
-                font-size: 1rem;
-            }
-
-            .skills li {
-                padding: 0.5rem 1rem;
-                font-size: 0.8rem;
-            }
-
-            .works-grid {
-                gap: 2rem;
-            }
-
-            .work-item img {
-                height: 200px;
-            }
-
-            .work-item-content {
-                padding: 1.5rem;
-            }
-
-            .work-item h3 {
-                font-size: 1.4rem;
-            }
-
-            .work-item p {
                 font-size: 0.9rem;
             }
 
-            .work-tags a, .work-tags span {
-                font-size: 0.75rem;
-                padding: 0.4rem 0.8rem;
-            }
+            /* Skills li styles removed */
 
-            #contact .contact-btn {
-                width: 90%;
-                margin: 0 auto;
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-            }
-
-            footer {
-                padding: 2.5rem 0;
-                margin-top: 2.5rem;
-            }
-
-            footer p {
-                font-size: 0.85rem;
-            }
-
-            .social-links {
+            .works-grid {
                 gap: 1.5rem;
             }
 
+            .work-item img {
+                height: 180px;
+            }
+
+            .work-item-content {
+                padding: 1rem;
+            }
+
+            .work-item h3 {
+                font-size: 1.1rem;
+            }
+
+            .work-item p {
+                font-size: 0.8rem;
+            }
+
+            .work-tags a, .work-tags span {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.6rem;
+            }
+
+            #contact .contact-btn {
+                width: 80%;
+                margin: 0 auto;
+                padding: 0.7rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            footer {
+                padding: 2rem 0;
+                margin-top: 2rem;
+            }
+
+            footer p {
+                font-size: 0.75rem;
+            }
+
+            .social-links {
+                gap: 1.2rem;
+            }
+
             .social-links a {
-                font-size: 1.8rem;
+                font-size: 1.5rem;
             }
         }
 
@@ -790,38 +762,38 @@
 
         /* ゲームセクションのスタイル */
         .game-content {
-            background-color: rgba(255, 255, 255, 0.08); /* 少し透明な白い背景 */
-            padding: 3rem;
-            border-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* 暗い半透明の背景 */
+            padding: 2.5rem;
+            border-radius: 20px; /* 角丸を大きく */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             text-align: center;
-            max-width: 650px; /* 幅を広げる */
+            max-width: 600px;
             margin: 0 auto;
-            color: #fff;
+            color: #e0e0e0; /* 明るいテキスト色 */
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px); /* ゲームセクションにもぼかし効果 */
+            backdrop-filter: blur(5px);
         }
 
         .game-description {
-            font-size: 1.4rem; /* サイズを調整 */
-            margin-bottom: 2rem;
-            color: #e0e0e0;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #c0c0c0;
         }
 
         .janken-choices {
             display: flex;
             justify-content: center;
-            gap: 1.5rem; /* 間隔を調整 */
-            margin-bottom: 2rem;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .janken-btn {
             background: linear-gradient(45deg, #4a90e2, #78b9f7); /* グラデーション背景 */
             color: white;
-            padding: 1.2rem 1.8rem; /* パディングを調整 */
+            padding: 0.8rem 1.2rem;
             border: none;
-            border-radius: 15px; /* 角丸を調整 */
-            font-size: 2.5rem; /* 絵文字を大きく */
+            border-radius: 15px; /* 角丸を大きく */
+            font-size: 2rem;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
@@ -831,7 +803,7 @@
             line-height: 1.2;
             position: relative;
             overflow: hidden;
-            z-index: 1; /* 光沢エフェクトを前面に */
+            z-index: 1;
         }
 
         .janken-btn::before {
@@ -853,47 +825,47 @@
 
         .janken-btn:hover {
             background: linear-gradient(45deg, #357abd, #65a8e0);
-            transform: translateY(-5px) scale(1.05); /* 浮き上がって拡大 */
-            box-shadow: 0 10px 25px rgba(74, 144, 226, 0.6);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(74, 144, 226, 0.6);
         }
 
         .janken-btn span {
-            font-size: 1rem;
-            margin-top: 0.5rem;
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
             color: #fff;
             position: relative;
-            z-index: 1; /* 絵文字とテキストを前面に */
+            z-index: 1;
         }
 
         .game-message {
-            font-size: 1.2rem;
-            margin-top: 1rem;
-            font-weight: 600;
-            color: #e0e0e0;
+            font-size: 1rem;
+            margin-top: 0.8rem;
+            font-weight: 500;
+            color: #c0c0c0;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
         #gameResult {
-            font-size: 2rem; /* サイズを調整 */
-            font-weight: 700;
-            margin-top: 1.8rem;
-            color: #78b9f7; /* 結果を目立たせる */
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-top: 1.2rem;
+            color: #78b9f7; /* 青いアクセントカラー */
             text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
         }
 
         .game-btn-secondary {
-            background: linear-gradient(45deg, #6c757d, #8d959b); /* グラデーション背景 */
+            background: linear-gradient(45deg, #6c757d, #8d959b); /* グレーのグラデーション */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            margin-top: 2rem; /* 間隔を調整 */
-            padding: 0.8rem 2rem;
-            font-size: 1rem;
+            margin-top: 1.5rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 0.9rem;
             font-weight: 600;
             border-radius: 50px;
             color: #fff;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            z-index: 1; /* 光沢エフェクトを前面に */
+            z-index: 1;
         }
 
         .game-btn-secondary::before {
@@ -923,7 +895,7 @@
 <body>
     <header>
         <div class="container">
-            <h1>Zero Wing</h1> <!-- ヘッダーのテキストをシンプルに -->
+            <h1>Zero Wing</h1>
             <div class="nav-toggle" aria-label="Toggle navigation">
                 <span></span><span></span><span></span>
             </div>
@@ -940,9 +912,8 @@
 
     <section id="hero">
         <div class="hero-content">
-            <!-- ヒーローセクションのアイコン画像を修正 -->
             <img src="zero-wing-icon.png" alt="ゼロウィング アイコン" class="profile-icon-large">
-            <h2>アイデアを現実に、<br><span style="color: #78b9f7;">ゼロウィング</span>の創造力。</h2> <!-- 強調色と改行 -->
+            <h2>アイデアを現実に、<br><span style="color: #78b9f7;">ゼロウィング</span>の創造力。</h2>
             <p>Web制作からイラストレーション、AIアートまで、多角的な表現であなたのビジョンを形にします。</p>
             <div class="hero-buttons">
                 <a href="#works" class="hero-btn">作品を見る</a>
@@ -956,7 +927,6 @@
             <h2>私について</h2>
             <div class="about-content">
                 <div class="profile-image">
-                    <!-- 「私について」のプロフィール画像を修正 -->
                     <img src="zero-wing-profile.png" alt="Profile Image">
                 </div>
                 <div class="profile-text">
@@ -965,18 +935,7 @@
                     <p>Webクリエイター兼デザイナーのゼロウィングと申します。デザインからコーディングまで一貫してWebサイト制作を手掛ける傍ら、
                     可愛らしいキャラクターイラストの制作や、最新のAI技術を用いたビデオアートの制作にも日々取り組んでいます。</p>
                     <p>ユーザーの心に響くデザインと、確かな技術で、お客様の想いを形にすることを使命としています。</p>
-                    <h3>スキル</h3> <!-- スキルセクションを追加 -->
-                    <ul class="skills">
-                        <li>HTML5 / CSS3</li>
-                        <li>JavaScript (ES6+)</li>
-                        <li>React (基礎)</li>
-                        <li>UI/UX Design</li>
-                        <li>Photoshop / Illustrator</li>
-                        <li>Figma / XD</li>
-                        <li>WordPress</li>
-                        <li>キャラクターデザイン</li>
-                        <li>AI Art (Sora/Midjourney)</li>
-                    </ul>
+                    <!-- スキルセクションを削除 -->
                 </div>
             </div>
         </div>
@@ -988,7 +947,7 @@
             <div class="works-grid">
                 <!-- 作品例 1: LINEスタンプ風キャラクター制作 -->
                 <div class="work-item">
-                    <img src="https://placehold.co/600x400/E9F0F9/4A90E2?text=Character+Art" alt="キャラクターイラスト">
+                    <img src="https://placehold.co/600x400/2c3e50/78b9f7?text=Character+Art" alt="キャラクターイラスト">
                     <div class="work-item-content">
                         <h3>LINEスタンプ風キャラクター制作</h3>
                         <p>親しみやすいタッチで描かれたLINEスタンプ風のオリジナルキャラクター。
@@ -1003,7 +962,7 @@
                 </div>
                 <!-- 作品例 2: Webサイト制作 -->
                 <div class="work-item">
-                    <img src="https://placehold.co/600x400/F5F7FA/6A82A0?text=Web+Design" alt="Webサイト制作">
+                    <img src="https://placehold.co/600x400/1a2a3a/78b9f7?text=Web+Design" alt="Webサイト制作">
                     <div class="work-item-content">
                         <h3>コーポレートサイトデザイン</h3>
                         <p>クライアントのブランドイメージを最大限に引き出す、
@@ -1018,7 +977,7 @@
                 </div>
                 <!-- 新しい項目: Vibe Coding -->
                 <div class="work-item">
-                    <img src="https://placehold.co/600x400/D9EDF7/3B82F6?text=Vibe+Coding" alt="Vibe Coding Image">
+                    <img src="https://placehold.co/600x400/2c3e50/78b9f7?text=Vibe+Coding" alt="Vibe Coding Image">
                     <div class="work-item-content">
                         <h3>Vibe Codingもやってます</h3>
                         <p>集中力を高めるための「ポモドーロテクニック」を取り入れた、独自のVibe Codingアプリケーション。
@@ -1056,7 +1015,7 @@
     <section id="contact" class="section bg-light">
         <div class="container">
             <h2>お問い合わせ</h2>
-            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2.5rem; color: #e0e0e0;">お仕事のご依頼やご相談はこちらからお気軽にお問い合わせください。</p>
+            <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2.5rem; color: #c0c0c0;">お仕事のご依頼やご相談はこちらからお気軽にお問い合わせください。</p>
             <div class="contact-buttons">
                 <a href="https://twitter.com/messages/compose?recipient_id=your_twitter_id" target="_blank" class="contact-btn">Twitter DMで連絡する</a>
             </div>
@@ -1120,15 +1079,9 @@
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');
                 if (window.scrollY > 50) {
-                    header.classList.add('scrolled'); // スクロール時にクラスを追加
-                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
-                    header.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
-                    header.style.backdropFilter = 'blur(8px)';
+                    header.classList.add('scrolled');
                 } else {
-                    header.classList.remove('scrolled'); // スクロール解除時にクラスを削除
-                    header.style.backgroundColor = 'rgba(0, 0, 0, 0.85)';
-                    header.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.3)';
-                    header.style.backdropFilter = 'blur(8px)';
+                    header.classList.remove('scrolled');
                 }
             });
             
@@ -1166,9 +1119,6 @@
                     
                     if (sectionTop < windowHeight - 150) {
                         section.classList.add('is-visible');
-                    } else {
-                        // オプション：スクロールで非表示にする場合は以下を有効化
-                        // section.classList.remove('is-visible');
                     }
                 });
             };
