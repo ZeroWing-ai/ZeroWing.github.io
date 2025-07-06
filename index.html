@@ -7,113 +7,123 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Reset CSS */
+        /* Reset CSS - 全ての要素のマージン、パディング、ボックスサイジングをリセット */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* HTMLとBodyの高さ設定 - ビューポートいっぱいに広がるように設定 */
         html, body {
             height: 100%;
         }
 
+        /* Bodyの基本スタイル - フォント、行の高さ、色、背景色、オーバーフロー設定 */
         body {
             font-family: 'Inter', 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
             line-height: 1.6;
-            color: #e0e0e0; /* 全体のテキスト色を明るく */
-            background-color: #1a1a1a; /* 全体の背景色を暗く */
-            overflow-x: hidden;
+            color: #e0e0e0; /* 全体のテキスト色を明るいグレーに設定 */
+            background-color: #1a1a1a; /* 全体の背景色を非常に暗いグレーに設定 */
+            overflow-x: hidden; /* 横方向のスクロールを無効化 */
         }
 
+        /* コンテナのスタイル - コンテンツの最大幅と中央揃え */
         .container {
             width: 90%;
-            max-width: 960px; /* ikedahayato.com のようにコンテンツ幅を少し狭く */
-            margin: 0 auto;
-            padding: 0 15px;
+            max-width: 960px; /* コンテンツの最大幅を設定 (ikedahayato.comに類似) */
+            margin: 0 auto; /* 中央揃え */
+            padding: 0 15px; /* 左右のパディング */
         }
 
-        /* Header */
+        /* Header - ヘッダーの固定位置、背景、影、トランジション */
         header {
-            background-color: rgba(0, 0, 0, 0.85); /* 暗い半透明の背景 */
-            backdrop-filter: blur(8px); /* 背景をぼかす効果を追加 */
+            background-color: rgba(0, 0, 0, 0.85); /* 暗い半透明の背景色 */
+            backdrop-filter: blur(8px); /* 背景のぼかし効果 */
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); /* 強い影 */
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
-            border-bottom: none; /* ボーダーを削除 */
+            position: fixed; /* 画面上部に固定 */
+            width: 100%; /* 幅いっぱい */
+            top: 0; /* 上端に配置 */
+            z-index: 1000; /* 他の要素より手前に表示 */
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease; /* スムーズなトランジション */
+            border-bottom: none; /* 下のボーダーを削除 */
         }
 
+        /* Header scrolled state - スクロール時のヘッダーのスタイル変更 */
         header.scrolled {
-            background-color: rgba(0, 0, 0, 0.95); /* スクロール時にさらに濃く */
+            background-color: rgba(0, 0, 0, 0.95); /* スクロール時にさらに濃い背景色 */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* 影を強調 */
         }
 
+        /* Header container - ヘッダー内のコンテンツ配置 */
         header .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 18px 0; /* パディングを調整 */
+            display: flex; /* Flexboxを使用 */
+            justify-content: space-between; /* 要素を両端に配置 */
+            align-items: center; /* 垂直方向中央揃え */
+            padding: 18px 0; /* 上下のパディング */
         }
 
+        /* Header h1 - サイトタイトル */
         header h1 {
             font-family: 'Inter', sans-serif;
             font-size: 1.8rem;
             font-weight: 700;
             color: #fff; /* 白い文字色 */
             letter-spacing: 0.5px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* テキストシャドウを追加 */
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* テキストシャドウ */
         }
 
+        /* Header navigation list - ナビゲーションリストのスタイル */
         header nav ul {
-            display: flex;
-            list-style: none;
+            display: flex; /* Flexboxを使用 */
+            list-style: none; /* リストのマーカーを削除 */
         }
 
+        /* Header navigation list item - ナビゲーションリストアイテムの間隔 */
         header nav ul li {
             margin-left: 2.5rem;
         }
 
+        /* Header navigation link - ナビゲーションリンクのスタイルとホバー効果 */
         header nav ul li a {
-            text-decoration: none;
+            text-decoration: none; /* 下線を削除 */
             color: #e0e0e0; /* 明るいリンク色 */
             font-weight: 500;
-            transition: color 0.2s ease, transform 0.1s ease;
-            position: relative;
-            padding-bottom: 4px;
+            transition: color 0.2s ease, transform 0.1s ease; /* スムーズなトランジション */
+            position: relative; /* ::after擬似要素の基準位置 */
+            padding-bottom: 4px; /* 下線との間隔 */
             font-size: 1rem;
         }
 
         header nav ul li a:hover {
-            color: #78b9f7; /* 青いアクセントカラー */
-            transform: translateY(-2px); /* 軽い浮き上がり */
+            color: #78b9f7; /* ホバー時に青いアクセントカラー */
+            transform: translateY(-2px); /* 軽く浮き上がる効果 */
         }
 
+        /* Header navigation link underline - ホバー時の下線アニメーション */
         header nav ul li a::after {
             content: '';
             position: absolute;
-            width: 0;
-            height: 2px;
+            width: 0; /* 初期状態では幅0 */
+            height: 2px; /* 細い下線 */
             background-color: #78b9f7; /* 青いアクセントカラー */
             bottom: 0;
             left: 0;
-            transition: width 0.2s ease-out;
+            transition: width 0.2s ease-out; /* 幅が広がるアニメーション */
         }
 
         header nav ul li a:hover::after {
-            width: 100%;
+            width: 100%; /* ホバー時に幅いっぱい */
         }
 
-        /* Mobile Navigation Toggle */
+        /* Mobile Navigation Toggle - モバイル用ナビゲーショントグルアイコン */
         .nav-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
+            display: none; /* デフォルトでは非表示 */
+            flex-direction: column; /* 縦方向に並べる */
+            justify-content: space-between; /* 間隔を均等に配置 */
             width: 25px;
             height: 18px;
-            cursor: pointer;
+            cursor: pointer; /* カーソルをポインターに */
             position: relative;
             z-index: 1001;
         }
@@ -122,11 +132,12 @@
             display: block;
             width: 100%;
             height: 2px;
-            background-color: #fff; /* 白いトグルアイコン */
+            background-color: #fff; /* 白いバー */
             border-radius: 1px;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; /* スムーズなアニメーション */
         }
 
+        /* Mobile Navigation Toggle active state - トグルアイコンのアニメーション */
         .nav-toggle.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
@@ -139,9 +150,9 @@
             transform: rotate(-45deg) translate(5px, -5px);
         }
 
-        /* Hero Section */
+        /* Hero Section - ヒーローセクションの全体スタイル */
         #hero {
-            height: 100vh;
+            height: 100vh; /* ビューポートの高さに合わせる */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -150,11 +161,12 @@
             position: relative;
             overflow: hidden;
             color: #fff; /* テキスト色を白に */
-            padding-top: 80px;
+            padding-top: 80px; /* ヘッダーとの重なりを避ける */
             z-index: 1;
             background: linear-gradient(135deg, #2c3e50 0%, #1a2a3a 100%); /* 暗いグラデーション背景 */
         }
 
+        /* Hero content - ヒーローセクション内のコンテンツボックス */
         #hero .hero-content {
             position: relative;
             z-index: 2;
@@ -162,73 +174,81 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 3rem 2rem; /* パディングを調整 */
+            padding: 3rem 2rem;
             background: rgba(0, 0, 0, 0.7); /* 暗い半透明の背景 */
-            border-radius: 20px; /* 角丸を大きく */
+            border-radius: 20px; /* 大きな角丸 */
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* 強い影 */
-            border: 1px solid rgba(255, 255, 255, 0.1); /* 軽いボーダーを追加 */
-            animation: fadeInScaleUp 1.2s ease-out forwards; /* 新しい登場アニメーション */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* 軽いボーダー */
+            animation: fadeInScaleUp 1.2s ease-out forwards; /* 登場アニメーション */
         }
 
+        /* Keyframe: fadeInScaleUp - ヒーローコンテンツの登場アニメーション */
         @keyframes fadeInScaleUp {
             from { opacity: 0; transform: scale(0.9) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
         }
 
+        /* Profile icon large - ヒーローセクションのプロフィールアイコン */
         .profile-icon-large {
             width: 160px;
             height: 160px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid #78b9f7; /* 青いアクセントカラー */
-            box-shadow: 0 0 30px rgba(120, 185, 247, 0.8), 0 0 50px rgba(120, 185, 247, 0.4); /* 光る影を強調 */
+            border-radius: 50%; /* 円形 */
+            object-fit: cover; /* 画像のフィット方法 */
+            border: 6px solid #78b9f7; /* 青いアクセントカラーのボーダー */
+            box-shadow: 0 0 30px rgba(120, 185, 247, 0.8), 0 0 50px rgba(120, 185, 247, 0.4); /* 光る影 */
             margin-bottom: 2.5rem;
             animation: pulse 2s infinite alternate, fadeInScale 1s ease forwards; /* 脈打つアニメーションとフェードインスケール */
             animation-delay: 0.2s;
         }
 
+        /* Keyframe: pulse - アイコンの脈打つアニメーション */
         @keyframes pulse {
             from { box-shadow: 0 0 30px rgba(120, 185, 247, 0.8), 0 0 50px rgba(120, 185, 247, 0.4); }
             to { box-shadow: 0 0 40px rgba(120, 185, 247, 1), 0 0 60px rgba(120, 185, 247, 0.6); }
         }
+        /* Keyframe: fadeInScale - アイコンのフェードインとスケールアニメーション */
         @keyframes fadeInScale {
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
 
+        /* Hero h2 - ヒーローセクションのメイン見出し */
         #hero h2 {
             font-family: 'Inter', sans-serif;
             font-size: 3.5rem;
             margin-bottom: 1rem;
             color: #fff; /* 白い文字色 */
             line-height: 1.2;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.8); /* 影をさらに強く */
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.8); /* 強いテキストシャドウ */
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInMoveUp 0.8s ease forwards;
+            animation: fadeInMoveUp 0.8s ease forwards; /* 登場アニメーション */
             animation-delay: 0.5s;
         }
 
+        /* Hero p - ヒーローセクションのサブテキスト */
         #hero p {
             font-size: 1.4rem;
             color: #e0e0e0; /* 明るいグレーの文字色 */
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInMoveUp 0.8s ease forwards;
+            animation: fadeInMoveUp 0.8s ease forwards; /* 登場アニメーション */
             animation-delay: 0.7s;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* 影を強く */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.7); /* 強いテキストシャドウ */
             margin-bottom: 2rem;
         }
 
+        /* Hero buttons - ヒーローセクションのボタンコンテナ */
         .hero-buttons {
             display: flex;
             gap: 1rem;
             margin-top: 1.5rem;
             opacity: 0;
-            animation: fadeInMoveUp 0.8s ease forwards;
+            animation: fadeInMoveUp 0.8s ease forwards; /* 登場アニメーション */
             animation-delay: 0.9s;
         }
 
+        /* Hero button - ヒーローセクションのボタン */
         .hero-btn {
             background: linear-gradient(45deg, #4a90e2, #78b9f7); /* グラデーション背景 */
             color: white;
@@ -238,7 +258,7 @@
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s ease; /* 全てのプロパティにトランジション */
             text-decoration: none;
             display: inline-block;
             box-shadow: 0 8px 20px rgba(74, 144, 226, 0.5); /* 影を強調 */
@@ -247,6 +267,7 @@
             z-index: 1;
         }
 
+        /* Hero button before pseudo-element - ホバー時の光沢エフェクト */
         .hero-btn::before {
             content: '';
             position: absolute;
@@ -261,24 +282,24 @@
         }
 
         .hero-btn:hover::before {
-            left: 100%;
+            left: 100%; /* ホバー時に光沢が右に移動 */
         }
 
         .hero-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(74, 144, 226, 0.8);
+            transform: translateY(-5px); /* 浮き上がる効果 */
+            box-shadow: 0 15px 30px rgba(74, 144, 226, 0.8); /* 影をさらに強調 */
             background: linear-gradient(45deg, #357abd, #65a8e0); /* ホバー時のグラデーション */
         }
 
-        /* Section Common Style */
+        /* Section Common Style - 各セクションの共通スタイル */
         .section {
             padding: 6rem 0;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* 登場アニメーション */
             background-color: #222222; /* 暗い背景色 */
             margin-top: 3rem;
-            border-radius: 20px; /* 角丸を大きく */
+            border-radius: 20px; /* 大きな角丸 */
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); /* 影を強調 */
             color: #e0e0e0; /* テキスト色を明るく */
             position: relative;
@@ -286,7 +307,7 @@
             border-bottom: none; /* ボーダーを削除 */
         }
 
-        /* Section Background Overlay */
+        /* Section Background Overlay - 各セクションの背景オーバーレイ */
         .section::before {
             content: '';
             position: absolute;
@@ -300,11 +321,13 @@
             z-index: -1;
         }
 
+        /* Section visible state - セクションが表示された時のスタイル */
         .section.is-visible {
             opacity: 1;
             transform: translateY(0);
         }
 
+        /* Section h2 - 各セクションの見出し */
         .section h2 {
             font-family: 'Inter', sans-serif;
             text-align: center;
@@ -316,6 +339,7 @@
             text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
         }
 
+        /* Section h2 after pseudo-element - 見出しの下線 */
         .section h2::after {
             content: '';
             position: absolute;
@@ -328,20 +352,22 @@
             border-radius: 2px;
         }
 
+        /* Background light - 明るい背景色のセクション (ダークテーマではわずかに異なる暗い色) */
         .bg-light {
             background-color: #1a1a1a; /* わずかに異なる暗い背景色 */
         }
 
-        /* 私についてセクション */
+        /* About Section content - 私についてセクションのコンテンツ配置 */
         .about-content {
             display: flex;
-            align-items: flex-start;
+            align-items: flex-start; /* 上揃え */
             gap: 4rem;
             flex-wrap: wrap;
             justify-content: center;
             padding: 0 1rem;
         }
 
+        /* Profile image - プロフィール画像のコンテナ */
         .profile-image {
             flex: none;
             width: 280px;
@@ -349,26 +375,29 @@
             margin-right: 2rem;
         }
 
+        /* Profile image img - プロフィール画像 */
         .profile-image img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
+            border-radius: 50%; /* 円形 */
             object-fit: cover;
-            border: 6px solid #4a90e2; /* 青いアクセントカラー */
+            border: 6px solid #4a90e2; /* 青いアクセントカラーのボーダー */
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4); /* 影を強調 */
-            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* スムーズなアニメーション */
         }
 
         .profile-image img:hover {
-            transform: scale(1.07) rotate(3deg);
+            transform: scale(1.07) rotate(3deg); /* ホバーで拡大と回転 */
         }
 
+        /* Profile text - プロフィールテキストのコンテナ */
         .profile-text {
             flex: 1;
             min-width: 300px;
             max-width: 600px;
         }
 
+        /* Profile text h3 - プロフィールテキストの見出し */
         .profile-text h3 {
             font-size: 1.8rem;
             margin: 0 0 1rem;
@@ -377,6 +406,7 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
         }
 
+        /* Profile text p - プロフィールテキストの段落 */
         .profile-text p {
             margin-bottom: 1rem;
             font-size: 1rem;
@@ -384,17 +414,18 @@
             color: #c0c0c0; /* 明るいグレーの文字色 */
         }
 
-        /* Skills Section Removed */
+        /* Skills Section Removed (以前のバージョンで削除済み) */
 
-        /* 作品セクション */
+        /* Works Section grid - 作品グリッドのレイアウト */
         .works-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* レスポンシブなグリッド */
             gap: 2.5rem;
             margin-top: 3rem;
             padding: 0 1rem;
         }
 
+        /* Work item - 各作品カードのスタイル */
         .work-item a {
             display: flex;
             flex-direction: column;
@@ -405,14 +436,15 @@
 
         .work-item {
             background: rgba(255, 255, 255, 0.05); /* 薄い透明な背景 */
-            border-radius: 20px; /* 角を大きく */
+            border-radius: 20px; /* 大きな角丸 */
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); /* 影を強調 */
-            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* スムーズなアニメーション */
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1); /* 軽いボーダー */
         }
 
+        /* Work item before pseudo-element - ホバー時のオーバーレイ */
         .work-item::before {
             content: '';
             position: absolute;
@@ -428,25 +460,27 @@
         }
 
         .work-item:hover::before {
-            opacity: 1;
+            opacity: 1; /* ホバー時にオーバーレイを表示 */
         }
 
         .work-item:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            transform: translateY(-15px) scale(1.02); /* 浮き上がりとわずかな拡大 */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5); /* 影を強調 */
         }
 
+        /* Work item image - 作品カード内の画像 */
         .work-item img {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); /* スムーズなアニメーション */
         }
 
         .work-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.1); /* ホバー時に画像を拡大 */
         }
 
+        /* Work item content - 作品カード内のテキストコンテンツ */
         .work-item-content {
             padding: 1.5rem;
             flex-grow: 1;
@@ -456,6 +490,7 @@
             color: #e0e0e0; /* テキスト色を明るく */
         }
 
+        /* Work item h3 - 作品カードのタイトル */
         .work-item h3 {
             font-size: 1.3rem;
             color: #fff; /* 白い文字色 */
@@ -464,6 +499,7 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
 
+        /* Work item p - 作品カードの説明文 */
         .work-item p {
             font-size: 0.9rem;
             color: #c0c0c0; /* 明るいグレーの文字色 */
@@ -471,6 +507,7 @@
             line-height: 1.6;
         }
 
+        /* Work tags - 作品のタグ */
         .work-tags {
             display: flex;
             flex-wrap: wrap;
@@ -478,6 +515,7 @@
             margin-top: auto;
         }
 
+        /* Work tags item - 作品タグの個々のスタイル */
         .work-tags a, .work-tags span {
             background-color: rgba(120, 185, 247, 0.1); /* 透明度のあるアクセントカラー */
             color: #78b9f7; /* 青いアクセントカラー */
@@ -497,16 +535,18 @@
             box-shadow: 0 3px 10px rgba(120, 185, 247, 0.5);
         }
 
-        /* お問い合わせセクション */
+        /* Contact Section - お問い合わせセクション */
         #contact {
             padding: 6rem 0;
             text-align: center;
         }
 
+        /* Contact h2 - お問い合わせセクションの見出し */
         #contact h2 {
             margin-bottom: 3rem;
         }
 
+        /* Contact buttons - お問い合わせボタンのコンテナ */
         #contact .contact-buttons {
             display: flex;
             justify-content: center;
@@ -515,6 +555,7 @@
             padding: 0 1rem;
         }
 
+        /* Contact button - お問い合わせボタン */
         .contact-btn {
             background: linear-gradient(45deg, #4a90e2, #78b9f7); /* グラデーション背景 */
             color: white;
@@ -533,6 +574,7 @@
             z-index: 1;
         }
 
+        /* Contact button before pseudo-element - ホバー時の光沢エフェクト */
         .contact-btn::before {
             content: '';
             position: absolute;
@@ -551,12 +593,12 @@
         }
 
         .contact-btn:hover {
-            background: linear-gradient(45deg, #357abd, #65a8e0); /* ホバー時のグラデーション */
+            background: linear-gradient(45deg, #357abd, #65a8e0);
             transform: translateY(-5px);
             box-shadow: 0 15px 30px rgba(74, 144, 226, 0.6);
         }
 
-        /* フッター */
+        /* Footer - フッターのスタイル */
         footer {
             background-color: #1a1a1a; /* 暗い背景色 */
             color: #fff;
@@ -566,12 +608,14 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
+        /* Footer paragraph - フッターのテキスト */
         footer p {
             font-size: 0.85rem;
             margin-bottom: 1rem;
             color: #a0a0a0;
         }
 
+        /* Social links - ソーシャルリンクのコンテナ */
         .social-links {
             margin-top: 1rem;
             display: flex;
@@ -579,6 +623,7 @@
             gap: 1.5rem;
         }
 
+        /* Social links item - ソーシャルリンクのアイコン */
         .social-links a {
             color: #e0e0e0;
             font-size: 1.8rem;
@@ -590,7 +635,7 @@
             transform: translateY(-2px);
         }
 
-        /* レスポンシブデザイン */
+        /* Responsive Design - レスポンシブデザインのメディアクエリ */
         @media (max-width: 768px) {
             header .container {
                 flex-direction: column;
@@ -608,7 +653,7 @@
                 display: none;
                 flex-direction: column;
                 align-items: center;
-                background-color: rgba(0, 0, 0, 0.95); /* モバイルメニュー背景 */
+                background-color: rgba(0, 0, 0, 0.95);
                 backdrop-filter: blur(8px);
                 box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
                 position: absolute;
@@ -636,7 +681,7 @@
             }
 
             #hero .hero-content {
-                padding: 2rem 1.5rem; /* モバイルでのパディングを調整 */
+                padding: 2rem 1.5rem;
             }
 
             .profile-icon-large {
@@ -702,8 +747,6 @@
                 font-size: 0.9rem;
             }
 
-            /* Skills li styles removed */
-
             .works-grid {
                 gap: 1.5rem;
             }
@@ -754,32 +797,34 @@
             }
         }
 
-        /* キーフレームアニメーション */
+        /* Keyframe: fadeInMoveUp - 要素のフェードインと上方向への移動アニメーション */
         @keyframes fadeInMoveUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ゲームセクションのスタイル */
+        /* Game Section styles - じゃんけんゲームセクションのスタイル */
         .game-content {
             background-color: rgba(0, 0, 0, 0.7); /* 暗い半透明の背景 */
             padding: 2.5rem;
-            border-radius: 20px; /* 角丸を大きく */
+            border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
             text-align: center;
             max-width: 600px;
             margin: 0 auto;
-            color: #e0e0e0; /* 明るいテキスト色 */
+            color: #e0e0e0;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
         }
 
+        /* Game description - ゲームの説明テキスト */
         .game-description {
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
             color: #c0c0c0;
         }
 
+        /* Janken choices - じゃんけんの手の選択ボタンコンテナ */
         .janken-choices {
             display: flex;
             justify-content: center;
@@ -787,12 +832,13 @@
             margin-bottom: 1.5rem;
         }
 
+        /* Janken button - じゃんけんの手のボタン */
         .janken-btn {
-            background: linear-gradient(45deg, #4a90e2, #78b9f7); /* グラデーション背景 */
+            background: linear-gradient(45deg, #4a90e2, #78b9f7);
             color: white;
             padding: 0.8rem 1.2rem;
             border: none;
-            border-radius: 15px; /* 角丸を大きく */
+            border-radius: 15px;
             font-size: 2rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -806,6 +852,7 @@
             z-index: 1;
         }
 
+        /* Janken button before pseudo-element - ホバー時の光沢エフェクト */
         .janken-btn::before {
             content: '';
             position: absolute;
@@ -829,6 +876,7 @@
             box-shadow: 0 8px 20px rgba(74, 144, 226, 0.6);
         }
 
+        /* Janken button text - じゃんけんボタン内のテキスト */
         .janken-btn span {
             font-size: 0.8rem;
             margin-top: 0.3rem;
@@ -837,6 +885,7 @@
             z-index: 1;
         }
 
+        /* Game messages - ゲームのメッセージ表示 */
         .game-message {
             font-size: 1rem;
             margin-top: 0.8rem;
@@ -845,6 +894,7 @@
             text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
         }
         
+        /* Game result display - ゲーム結果の表示 */
         #gameResult {
             font-size: 1.6rem;
             font-weight: 600;
@@ -853,6 +903,7 @@
             text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
         }
 
+        /* Secondary game button - 二次的なゲームボタン (AIコメント、リセット) */
         .game-btn-secondary {
             background: linear-gradient(45deg, #6c757d, #8d959b); /* グレーのグラデーション */
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
@@ -868,6 +919,7 @@
             z-index: 1;
         }
 
+        /* Secondary game button before pseudo-element - ホバー時の光沢エフェクト */
         .game-btn-secondary::before {
             content: '';
             position: absolute;
@@ -891,6 +943,7 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
+        /* AI comment display area - AIコメント表示エリア */
         #aiComment {
             margin-top: 1.5rem;
             font-size: 1.1rem;
@@ -902,6 +955,7 @@
             text-align: center;
         }
 
+        /* Loading spinner - AIコメント生成中のローディングスピナー */
         .loading-spinner {
             border: 4px solid rgba(255, 255, 255, 0.3);
             border-top: 4px solid #78b9f7;
@@ -912,6 +966,7 @@
             margin: 0 auto;
         }
 
+        /* Keyframe: spin - スピナーの回転アニメーション */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -1073,25 +1128,26 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Smooth Scroll
+            // Smooth Scroll - スムーズスクロール機能
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
+                    e.preventDefault(); // デフォルトのアンカーリンク動作を無効化
                     
                     const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
+                    if (targetId === '#') return; // #のみの場合は何もしない
                     
                     const targetElement = document.querySelector(targetId);
                     if (targetElement) {
-                        const headerHeight = document.querySelector('header').offsetHeight;
+                        const headerHeight = document.querySelector('header').offsetHeight; // ヘッダーの高さを取得
+                        // ターゲット要素の位置からヘッダーの高さを引いてスクロール位置を調整
                         const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - headerHeight;
                         
                         window.scrollTo({
                             top: targetPosition,
-                            behavior: 'smooth'
+                            behavior: 'smooth' // スムーズスクロール
                         });
                         
-                        // Close mobile menu if open
+                        // Close mobile menu if open - モバイルメニューが開いている場合は閉じる
                         const navToggle = document.querySelector('.nav-toggle');
                         const navMenu = document.querySelector('nav');
                         if (navToggle && navMenu && navToggle.classList.contains('active')) {
@@ -1102,31 +1158,31 @@
                 });
             });
             
-            // Header style change on scroll
+            // Header style change on scroll - スクロール時のヘッダースタイル変更
             window.addEventListener('scroll', function() {
                 const header = document.querySelector('header');
-                if (window.scrollY > 50) {
-                    header.classList.add('scrolled');
+                if (window.scrollY > 50) { // 50px以上スクロールしたら
+                    header.classList.add('scrolled'); // 'scrolled'クラスを追加
                 } else {
-                    header.classList.remove('scrolled');
+                    header.classList.remove('scrolled'); // それ以外はクラスを削除
                 }
             });
             
-            // Mobile navigation toggle
+            // Mobile navigation toggle - モバイルナビゲーションのトグル機能
             const navToggle = document.querySelector('.nav-toggle');
             const navMenu = document.querySelector('nav');
             
             if (navToggle && navMenu) {
                 navToggle.addEventListener('click', function() {
-                    this.classList.toggle('active');
+                    this.classList.toggle('active'); // 'active'クラスをトグル
                     if (this.classList.contains('active')) {
-                        navMenu.style.display = 'flex';
+                        navMenu.style.display = 'flex'; // メニューを表示
                     } else {
-                        navMenu.style.display = 'none';
+                        navMenu.style.display = 'none'; // メニューを非表示
                     }
                 });
 
-                // Close mobile menu when a nav link is clicked
+                // Close mobile menu when a nav link is clicked - ナビゲーションリンククリック時にモバイルメニューを閉じる
                 document.querySelectorAll('header nav ul li a').forEach(link => {
                     link.addEventListener('click', () => {
                         if (navToggle.classList.contains('active')) {
@@ -1137,22 +1193,23 @@
                 });
             }
 
-            // Animation on scroll
+            // Animation on scroll - スクロール時のアニメーション
             const animateOnScroll = function() {
                 const sections = document.querySelectorAll('.section');
                 sections.forEach(section => {
                     const sectionTop = section.getBoundingClientRect().top;
                     const windowHeight = window.innerHeight;
                     
+                    // セクションがビューポートの指定位置に来たら'is-visible'クラスを追加
                     if (sectionTop < windowHeight - 150) {
                         section.classList.add('is-visible');
                     }
                 });
             };
             
-            // Initial animation check and scroll event listener
-            animateOnScroll();
-            window.addEventListener('scroll', animateOnScroll);
+            // Initial animation check and scroll event listener - 初期ロード時とスクロールイベントにアニメーションを適用
+            animateOnScroll(); // 初期チェック
+            window.addEventListener('scroll', animateOnScroll); // スクロールイベントリスナー
 
 
             // じゃんけんゲームのロジック
@@ -1164,17 +1221,17 @@
             const getAiCommentBtn = document.getElementById('getAiCommentBtn');
             const aiCommentDisplay = document.getElementById('aiComment');
 
-            // ゲーム要素が存在するか確認
+            // ゲーム要素が存在するか確認し、存在しない場合はエラーログを出力して処理を中断
             if (!(playerChoiceDisplay && computerChoiceDisplay && gameResultDisplay && resetJankenBtn && getAiCommentBtn && aiCommentDisplay)) {
                 console.error("じゃんけんゲームの要素が見つかりませんでした。ゲームを初期化できません。");
-                return; // これ以上ゲームロジックを実行しない
+                return; 
             }
 
-            let lastPlayerChoice = '';
-            let lastComputerChoice = '';
-            let lastGameResult = '';
+            let lastPlayerChoice = ''; // プレイヤーの最後の選択を保存
+            let lastComputerChoice = ''; // コンピュータの最後の選択を保存
+            let lastGameResult = ''; // 最後のゲーム結果を保存
 
-            // じゃんけんの手の定義
+            // じゃんけんの手の定義 (表示用)
             const choices = {
                 rock: '✊ グー',
                 scissors: '✌️ チョキ',
@@ -1191,16 +1248,20 @@
             // ゲームプレイ関数
             function playGame(playerChoice) {
                 const computerChoices = ['rock', 'scissors', 'paper'];
+                // コンピュータの手をランダムに決定
                 const computerChoice = computerChoices[Math.floor(Math.random() * computerChoices.length)];
 
+                // 選択と結果を保存
                 lastPlayerChoice = choices[playerChoice];
                 lastComputerChoice = choices[computerChoice];
                 lastGameResult = rules[playerChoice][computerChoice];
 
+                // 画面に表示
                 playerChoiceDisplay.textContent = `あなたの手: ${lastPlayerChoice}`;
                 computerChoiceDisplay.textContent = `コンピュータの手: ${lastComputerChoice}`;
                 gameResultDisplay.textContent = `結果: ${lastGameResult}`;
 
+                // 結果に応じてテキストの色を変更
                 if (lastGameResult === '勝ち！') {
                     gameResultDisplay.style.color = '#4CAF50'; // 緑色
                 } else if (lastGameResult === '負け') {
@@ -1209,9 +1270,10 @@
                     gameResultDisplay.style.color = '#ffdd33'; // 黄色
                 }
 
+                // じゃんけんボタンを無効化
                 jankenChoices.forEach(btn => btn.disabled = true);
                 getAiCommentBtn.style.display = 'inline-block'; // AIコメントボタンを表示
-                resetJankenBtn.style.display = 'inline-block';
+                resetJankenBtn.style.display = 'inline-block'; // リセットボタンを表示
                 aiCommentDisplay.textContent = ''; // 前回のAIコメントをクリア
             }
 
@@ -1220,6 +1282,7 @@
                 aiCommentDisplay.innerHTML = '<div class="loading-spinner"></div>'; // ローディングスピナーを表示
                 getAiCommentBtn.disabled = true; // ボタンを無効化
 
+                // AIに送るプロンプトを生成
                 const prompt = `あなたはじゃんけんゲームのコンピュータです。プレイヤーは${lastPlayerChoice}を出し、あなたは${lastComputerChoice}を出しました。結果は${lastGameResult}でした。この結果について、あなたの個性的なコメントを1文で述べてください。`;
 
                 try {
@@ -1235,20 +1298,37 @@
                         body: JSON.stringify(payload)
                     });
 
-                    const result = await response.json();
+                    // HTTPエラーのチェック
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        aiCommentDisplay.textContent = `AIコメントの生成に失敗しました: HTTPエラー ${response.status} - ${errorData.error ? errorData.error.message : '不明なエラー'}`;
+                        console.error('API HTTP Error:', response.status, errorData);
+                        return; 
+                    }
 
+                    const result = await response.json();
+                    console.log('Gemini API response:', result); // 完全なAPI応答をログに出力
+
+                    // 応答構造と候補の有無をチェック
                     if (result.candidates && result.candidates.length > 0 &&
                         result.candidates[0].content && result.candidates[0].content.parts &&
                         result.candidates[0].content.parts.length > 0) {
                         const text = result.candidates[0].content.parts[0].text;
-                        aiCommentDisplay.textContent = text;
-                    } else {
-                        aiCommentDisplay.textContent = 'AIコメントの生成に失敗しました。';
-                        console.error('Unexpected API response structure:', result);
+                        aiCommentDisplay.textContent = text; // コメントを表示
+                    } else if (result.promptFeedback && result.promptFeedback.safetyRatings && result.promptFeedback.safetyRatings.some(rating => rating.blocked)) {
+                        // 安全フィルターによってブロックされた場合
+                        aiCommentDisplay.textContent = 'AIコメントは安全上の理由によりブロックされました。別のコメントを試してください。';
+                        console.warn('AI comment blocked by safety filters:', result.promptFeedback.safetyRatings);
+                    }
+                    else {
+                        // 予期せぬ応答構造または候補が空の場合
+                        aiCommentDisplay.textContent = 'AIコメントの生成に失敗しました。予期せぬ応答構造です。';
+                        console.error('Unexpected API response structure or empty candidates:', result);
                     }
                 } catch (error) {
-                    aiCommentDisplay.textContent = 'AIコメントの取得中にエラーが発生しました。';
-                    console.error('Error fetching AI comment:', error);
+                    // ネットワークエラーやその他のエラー
+                    aiCommentDisplay.textContent = 'AIコメントの取得中にネットワークエラーが発生しました。';
+                    console.error('Network or other error fetching AI comment:', error);
                 } finally {
                     getAiCommentBtn.disabled = false; // ボタンを再度有効化
                 }
@@ -1262,9 +1342,9 @@
                 gameResultDisplay.style.color = '#78b9f7'; // デフォルト色に戻す
                 aiCommentDisplay.textContent = ''; // AIコメントをクリア
 
-                jankenChoices.forEach(btn => btn.disabled = false);
+                jankenChoices.forEach(btn => btn.disabled = false); // じゃんけんボタンを有効化
                 getAiCommentBtn.style.display = 'none'; // AIコメントボタンを非表示
-                resetJankenBtn.style.display = 'none';
+                resetJankenBtn.style.display = 'none'; // リセットボタンを非表示
             }
 
             // 各じゃんけんボタンにイベントリスナーを追加
