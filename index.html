@@ -137,7 +137,6 @@
             transition: all 0.3s ease; /* スムーズなアニメーション */
         }
 
-        /* Mobile Navigation Toggle active state - トグルアイコンのアニメーション */
         .nav-toggle.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
@@ -182,7 +181,6 @@
             animation: fadeInScaleUp 1.2s ease-out forwards; /* 登場アニメーション */
         }
 
-        /* Keyframe: fadeInScaleUp - ヒーローコンテンツの登場アニメーション */
         @keyframes fadeInScaleUp {
             from { opacity: 0; transform: scale(0.9) translateY(20px); }
             to { opacity: 1; transform: scale(1) translateY(0); }
@@ -722,21 +720,23 @@
                 margin-bottom: 2.5rem;
             }
             
-            .about-content, .works-grid, #contact .contact-buttons {
-                padding: 0 0.8rem;
-                gap: 2rem;
+            .about-content {
+                flex-direction: column;
+                gap: 2rem; /* モバイルでのギャップを調整 */
+                align-items: center; /* モバイルで中央揃え */
             }
 
             .profile-image {
-                width: 200px;
-                height: 200px;
-                margin-right: 0;
-                margin-bottom: 1.5rem;
+                width: 200px; /* モバイルでの画像サイズを調整 */
+                height: 200px; /* モバイルでの画像サイズを調整 */
+                margin-right: 0; /* デスクトップ用マージンをリセット */
+                margin-bottom: 1.5rem; /* 画像の下にスペースを追加 */
             }
 
             .profile-text {
                 min-width: unset;
-                width: 100%;
+                width: 90%; /* モバイルで左右に少しパディング */
+                text-align: center; /* モバイルでテキストを中央揃え */
             }
 
             .profile-text h3 {
